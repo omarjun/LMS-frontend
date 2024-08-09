@@ -44,3 +44,8 @@
     @tailwind utilities;
 ```
 
+### Adding plugins and dependicies
+
+```
+    npm i @reduxjs/toolkit react-redux react-router-dom react icons react-chartjs-2 chart.js daisyui@latest axios react-hot-toast @tailwind/line-clamp
+```
