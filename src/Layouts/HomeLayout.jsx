@@ -25,6 +25,15 @@ function HomeLayout( {children} ){
         const drawerSide = document.getElementsByClassName("drawer-side")
         drawerSide[0].style.width = 0;
     }
+
+    function handleLogout(e){
+        e.preventDefault();
+
+        // const res = await dispatch(logout());
+
+        navigate("/")
+    }
+
     return(
         <div className="min-h-[90vh]">
             <div className="drawer absolute left-0 z-50 w-fit">
@@ -70,17 +79,32 @@ function HomeLayout( {children} ){
 
                        {!isLoggedIn &&(
                         <li className="w-full mt-auto">
-                        <div className="flex space-x-2">
-                            <Link to="/login" className="btn btn-primary px-4 py-2 font-semibold rounded-md flex-1 text-center">
-                                Login
-                            </Link>
-                            <Link to="/signup" className="btn btn-secondary px-4 py-2 font-semibold rounded-md flex-1 text-center">
-                                SignUp
-                            </Link>
-                        </div>
-                    </li>
+                            <div className="flex space-x-2">
+                                <Link to="/login" className="btn btn-primary px-4 py-2 font-semibold rounded-md flex-1 text-center">
+                                    Login
+                                </Link>
+                                <Link to="/signup" className="btn btn-secondary px-4 py-2 font-semibold rounded-md flex-1 text-center">
+                                    SignUp
+                                </Link>
+                            </div>
+                        </li>
                     
                        )}
+
+                    {isLoggedIn &&(
+                        <li className="w-full mt-auto">
+                            <div className="flex space-x-2">
+                                <Link to="/profile" className="btn btn-primary px-4 py-2 font-semibold rounded-md flex-1 text-center">
+                                    Profile
+                                </Link>
+                                <Link onClick={handleLogout} className="btn btn-secondary px-4 py-2 font-semibold rounded-md flex-1 text-center">
+                                    Logout
+                                </Link>
+                            </div>
+                        </li>
+                    
+                    )}
+
 
                     </ul>
                 </div>
