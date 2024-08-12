@@ -1,10 +1,5 @@
 import HomeLayout from "../Layouts/HomeLayout"
 import aboutMainImage from "../Assests/Images/aboutMainImage.png"
-import apj from "../Assests/Images/apj.png"
-import billGates from "../Assests/Images/billGates.png"
-import einstein from "../Assests/Images/einstein.png"
-import nelsonMandela from "../Assests/Images/nelsonMandela.png"
-import steveJobs from "../Assests/Images/steveJobs.png"
 import Carousel from "../Components/Carousel"
 import { celebrities } from "../Constants/celebrities"
 function AboutUs() {
