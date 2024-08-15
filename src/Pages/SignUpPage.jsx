@@ -68,8 +68,7 @@ function SignUpPage() {
     formdata.append("email", signUpData.email);
     formdata.append("avatar", signUpData.avatar);
 
-   console.log( formdata.get("fullName"));
-       
+          
     // dispatch createe account action
     const response = await dispatch(createAccount(formdata));
     if(response?.payload?.success){
