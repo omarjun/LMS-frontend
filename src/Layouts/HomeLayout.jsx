@@ -95,7 +95,7 @@ function HomeLayout( {children} ){
                     {isLoggedIn &&(
                         <li className="w-full mt-auto">
                             <div className="flex space-x-2">
-                                <Link to="/profile" className="btn btn-primary px-4 py-2 font-semibold rounded-md flex-1 text-center">
+                                <Link to="/users/profile" className="btn btn-primary px-4 py-2 font-semibold rounded-md flex-1 text-center">
                                     Profile
                                 </Link>
                                 <Link onClick={handleLogout} className="btn btn-secondary px-4 py-2 font-semibold rounded-md flex-1 text-center">
