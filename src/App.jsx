@@ -12,6 +12,7 @@ import CourseDescription from './Pages/Courses/CourseDescription'
 import RequireAuth from './Components/Auth/RequireAuth'
 import CreateCourse from './Pages/Courses/CreateCourse'
 import Profile from './Pages/Users/Profile'
+import EditProfile from './Pages/Users/EditProfile'
 function App() {
   
 
@@ -35,6 +36,7 @@ function App() {
 
       <Route element ={<RequireAuth allowedRoles={["Admin", "User"]}/>} >
           <Route path='/users/profile' element = {<Profile/>}/>
+          <Route path='/users/editprofile' element = {<EditProfile/>}/>
       </Route>
 
         <Route path='*' element = {<NotFoundPage/>}/>
