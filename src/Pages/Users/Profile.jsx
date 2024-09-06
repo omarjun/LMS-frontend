@@ -16,7 +16,7 @@ function Profile() {
                         className="w-40 m-auto rounded-full border-black" 
                     />
                     <h3 className="text-xl font-semibold text-center capitalize">
-                        {userData?.fullname}
+                        {userData?.fullName}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                         <p>Email:</p><p>{userData?.email}</p>
