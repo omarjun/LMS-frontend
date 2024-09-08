@@ -1,10 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HomeLayout from "../../Layouts/HomeLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { cancelCourseBundle } from "../../Redux/Slices/RazorpaySlice";
+import { userData } from "../../Redux/Slices/AuthSlice";
+import toast from "react-hot-toast";
+
 
 function Profile() {
-    const userData = useSelector((state) => state?.auth?.data);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userInfo= useSelector((state) => state?.auth?.data);
     
+    
+    async function handleCancelation(){
+        await dispatch(cancelCourseBundle());
+        await dispatch(userData())
+        toast.success("Subscrition Cancelled !!");
+        navigate("/");
+    }
     return (
         <HomeLayout>
             <div className="min-h-[90vh] flex items-center justify-center">
@@ -12,17 +25,17 @@ function Profile() {
                     
                     
                     <img 
-                        src={userData?.avatar} 
+                        src={userInfo?.avatar} 
                         className="w-40 m-auto rounded-full border-black" 
                     />
                     <h3 className="text-xl font-semibold text-center capitalize">
-                        {userData?.fullName}
+                        {userInfo?.fullName}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
-                        <p>Email:</p><p>{userData?.email}</p>
-                        <p>Role:</p><p>{userData?.role}</p>
+                        <p>Email:</p><p>{userInfo?.email}</p>
+                        <p>Role:</p><p>{userInfo?.role}</p>
                         <p>Subscription: </p>
-                        {<p>{userData?.subscription?.status === "active" || userData?.role === "Admin" ? "Active" :"Inactive"}</p>}
+                        {<p>{userInfo?.subscription?.status === "active" || userInfo?.role === "Admin" ? "Active" :"Inactive"}</p>}
                     </div>
                     <div className="flex items-center justify-between gap-2">
                         <Link to="/changepassword" 
@@ -34,8 +47,8 @@ function Profile() {
                             Edit Profile
                         </Link>
                     </div>
-                    {userData?.subscription?.status !== "active" && (
-                        <button className="w-full bg-red-600 hover:bg-red-500 transition-all duration-300 cursor-pointer rounded-md  font-semibold text-white py-2">
+                    {userInfo?.subscription?.status === "active" && (
+                        <button onClick={handleCancelation} className="w-full bg-red-600 hover:bg-red-500 transition-all duration-300 cursor-pointer rounded-md  font-semibold text-white py-2">
                             Cancel Subscription
                         </button>
                     )}
