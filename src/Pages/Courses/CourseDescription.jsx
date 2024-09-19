@@ -32,7 +32,7 @@ function CourseDescription() {
                             </p>
                         </div>
                         {role === "Admin" || data?.subscription?.status === "active"  ?(
-                            <button className="bg-yellow-600 text-xl rounded-sm font-bold px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                            <button onClick={() => navigate("/courses/displaylecture", {state: {...state}})} className="bg-yellow-600 text-xl rounded-sm font-bold px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
                                 Watch lectures
                             </button>
                             ) :(
