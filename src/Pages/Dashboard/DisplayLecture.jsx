@@ -9,13 +9,13 @@ function DisplayLecture() {
     const dispatch = useDispatch();
     const {state} = useLocation();
     const {lectures} = useSelector((state) => state.lecture);
+    
     const {role} = useSelector((state) => state.auth);
 
     const [currentVideo, setCurrentVideo] = useState(0);
 
     useEffect(() => {
-        console.log(lectures);
-        
+    
         if(!state){
             navigate("/course")
         }
@@ -38,30 +38,27 @@ function DisplayLecture() {
                 {/*left section for displaying videp and displaying course details to admin*/}
 
 
-               {lectures && lectures.length > 0 && <div className=" space-y-5 w-[28 rem] p-2 rounded-lg shadow-[0_0_10px_black]">
-                    <video src={lectures && lectures[currentVideo]?.lecture?.thumbnail}
-                        className=" object-fill rounded-tl-lg rounded-tr-lg w-full"
-                        controls disablePictureInPicture muted controlsList="nodownload">                    
+               {lectures && lectures.length > 0 && <div className=" space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
+                    <video src={lectures && lectures[currentVideo]?.lecture}
+                          className="object-fill rounded-tl-lg rounded-tr-lg"
+                        controls disablePictureInPicture controlsList="nodownload">                    
                     </video>
                     <div>
-                        <h1>
+                        <h1 className="text-center">
                             <span className=" text-yellow-500"> Title: {" "} </span>
                                 {lectures && lectures[currentVideo]?.title}                            
                         </h1>
-                        <p>
-                            <span className=" text-yellow-500 line-clamp-4">Description: {" "}</span>
-                            {lectures && lectures[currentVideo]?.description}                       
-                        </p>
+                        
                     </div>
                </div>}
 
 
                {/* rihght section for displaying list of lectures*/}
-               <ul className=" w-[28 rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4">
+               <ul className=" w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4 text-center">
                     <li className=" font-semibold text-xl text-yellow-500 items-center justify-between">
                         <p>Lectures List</p>
                         {role === "Admin" && (
-                            <button onClick ={() => navigate("course/addlecture", {state: {...state}})} className="btn-primary px-2 py-1 rounded-md font-semibold text-sm">
+                            <button onClick ={() => navigate("/courses/addlecture", {state: {...state}})} className="btn btn-primary m-2 px-2 py-1 rounded-md font-semibold text-sm">
                                 Add new lectures
                             </button>
                         )}
@@ -77,7 +74,7 @@ function DisplayLecture() {
                                         {lecture.title}
                                     </p>
                                     {role === "Admin" && (
-                                        <button onClick={onLectureDelete(state?._id, lecture?._id)} className=" btn-accent py-2 px-1 rounded font-semibold text-sm">Delete Lecture</button>
+                                        <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className="btn btn-accent py-2 px-1 rounded font-semibold text-sm">Delete Lecture</button>
                                     )}
                                 </li>
                             )
